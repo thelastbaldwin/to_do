@@ -1,5 +1,6 @@
 var template = $('#hidden-template').html();
 
+
 var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 $(document).ready(function(){
