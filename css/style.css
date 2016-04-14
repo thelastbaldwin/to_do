@@ -11,10 +11,17 @@ input, body, .task{
     background-color: #333;
 }
 
-body, input::-webkit-input-placeholder, input{
+body, input{
     color: #006BDE;
 }
 
+input::-webkit-input-placeholder{
+    color: #006BDE;
+}
+
+input::-moz-input-placeholder{
+    color: #006BDE;
+}
 
 #container, #tasks, input, fieldset{
     border: 1px solid #006BDE;
