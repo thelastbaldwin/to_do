@@ -1,8 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 import TaskList from "./components/taskList";
 
-ReactDOM.render(
-  <TaskList />,
-  document.getElementById("app")
-);
+import {
+  addTaskAction,
+  moveTaskAction,
+  removeTaskAction
+} from "./store/actions";
+
+const mapStateToProps = state => ({
+  tasks: state.tasks
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  addTaskAction,
+  moveTaskAction,
+  removeTaskAction
+}, dispatch);
+
+const App = connect(mapStateToProps, mapDispatchToProps)(TaskList);
+
+export default App;

@@ -10,20 +10,27 @@ class TaskList extends React.Component {
   }
 
   render() {
+    const {
+      tasks,
+      addTaskAction,
+      moveTaskAction,
+      removeTaskAction
+    } = this.props;
+
     return (
       <div className={styles.container}>
         <h1 className={styles.title}>TO DEUX</h1>
         <ul className={styles.tasks}>
           {
-            this.props.tasks.map(
+            tasks.map(
               (task, index) => (
                 (
                   <Task
                     index={index}
                     key={task}
                     title={task}
-                    removeTask={this.props.removeTask}
-                    moveTask={this.props.moveTask}
+                    removeTaskAction={removeTaskAction}
+                    moveTaskAction={moveTaskAction}
                   />
                 )
               )
@@ -32,11 +39,9 @@ class TaskList extends React.Component {
         </ul>
         <form onSubmit={(event) => {
           event.preventDefault();
-          // get value of new task through ref
           const newTask = this.newTaskRef.current.value;
-          console.log(newTask);
-          // fire addTask action with the new task title
-          this.props.addTask(newTask);
+          addTaskAction(newTask);
+          this.newTaskRef.current.value = "";
         }}
         >
           <fieldset>
@@ -48,6 +53,7 @@ class TaskList extends React.Component {
               name="taskName"
               id="taskName"
               maxLength="50"
+              autoComplete="off"
             />
             <input type="submit" value="+" />
           </fieldset>
@@ -58,16 +64,15 @@ class TaskList extends React.Component {
 }
 
 TaskList.defaultProps = {
-  tasks: ["get a job"],
-  addTask: () => {},
-  removeTask: () => {},
-  moveTask: () => {}
+  addTaskAction: () => {},
+  removeTaskAction: () => {},
+  moveTaskAction: () => {}
 };
 
 TaskList.propTypes = {
-  addTask: PropTypes.func,
-  removeTask: PropTypes.func,
-  moveTask: PropTypes.func,
+  addTaskAction: PropTypes.func,
+  removeTaskAction: PropTypes.func,
+  moveTaskAction: PropTypes.func,
   tasks: PropTypes.arrayOf(PropTypes.string)
 };
 

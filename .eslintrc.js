@@ -27,6 +27,7 @@ module.exports = {
     "react/destructuring-assignment": 0,
     "react/require-default-props": 0,
     "react/no-unused-prop-types": 1,
+    "no-underscore-dangle": 0,
     "arrow-body-style": ["error", "as-needed"]
 	}
 }

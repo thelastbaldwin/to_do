@@ -17,7 +17,7 @@ const cleanWebpackPlugin = new CleanWebpackPlugin(["dist"])
 const commonConfig = merge([
   {
     entry: {
-      app: "./js/app.jsx"
+      app: "./js/index.jsx"
     },
     resolve: {
       extensions: [".js", ".jsx"]
@@ -38,7 +38,11 @@ const productionConfig = merge([
   parts.extractCSS({
     use: [{
       loader: "css-loader",
-      options: {importLoaders: 1}
+      options: {
+        importLoaders: 1,
+        modules: true,
+        localIdentName: "[name]_[hash:base64:5]"
+      }
     },
     {
       loader: "postcss-loader"
